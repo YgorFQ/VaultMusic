@@ -1,0 +1,10 @@
+{
+  "source": "FreeTube v0.26.0-beta",
+  "sourceAsarSha256": "9a2179317202ddf6e54884d3581c3c8d063d456ca3cfcb0e03b3aba407b9569e",
+  "generatedAt": "2026-11-08T16:38:18.582Z",
+  "engineSha256": "aceb989e8ad707b65c0726fc41e8513314375a8066ec681e6b20860dcd24acc7",
+  "components": {
+    "youtubei.js": "18.3.0",
+    "shaka-player": "5.3.3"
+  }
+}

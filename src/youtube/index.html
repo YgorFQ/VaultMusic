@@ -1,0 +1,214 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="referrer" content="strict-origin-when-cross-origin" />
+    <title>YouTube • Mei Music</title>
+    <link rel="stylesheet" href="/style.css" />
+  </head>
+  <body>
+    <div class="compact-bar">
+      <span>▶ YouTube</span
+      ><button
+        id="compact-toggle"
+        aria-label="Alternar reprodução do miniplayer"
+      >
+        ⏯</button
+      ><button id="expand-player">Expandir ↗</button>
+    </div>
+    <a class="skip-link" href="#section-title">Pular para os resultados</a>
+    <div class="app">
+      <div class="topbar">
+        <header>
+          <div class="brand">
+            <span class="mark" aria-hidden="true">▶</span>
+            <div>
+              <h1>YouTube</h1>
+              <small>no Mei Music</small>
+            </div>
+          </div>
+          <form id="search" role="search">
+            <div class="search-field">
+              <input
+                id="query"
+                aria-label="Pesquisar no YouTube"
+                placeholder="Músicas, artistas e vídeos…"
+                required
+                maxlength="200"
+                autocomplete="off"
+              /><button
+                id="clear-search"
+                type="button"
+                aria-label="Limpar pesquisa"
+                title="Limpar pesquisa"
+                hidden
+              >
+                ✕
+              </button>
+            </div>
+            <button class="primary" title="Pesquisar · atalho /">Buscar</button>
+          </form>
+          <button
+            id="queue-button"
+            aria-haspopup="dialog"
+            title="Ver fila de reprodução"
+          >
+            Fila <span id="queue-count">0</span></button
+          ><button id="account" aria-haspopup="dialog">Vincular conta</button
+          ><button id="settings" aria-haspopup="dialog">Configurar</button>
+        </header>
+        <nav aria-label="Seções do YouTube">
+          <button data-mode="for-you" aria-current="page">Para você</button
+          ><button data-mode="mixes">Mixes</button
+          ><button data-mode="subscriptions">Inscrições</button
+          ><button data-mode="playlists">Playlists</button
+          ><button data-mode="liked">Curtidas</button
+          ><button data-mode="history">Histórico local</button
+          ><button id="official">YouTube oficial ↗</button>
+        </nav>
+      </div>
+      <div class="intro">
+        <div>
+          <button id="back" class="back-button" hidden>← Voltar</button>
+          <h2 id="section-title" tabindex="-1">Para você</h2>
+          <p id="description">Suas preferências, novos encontros.</p>
+          <span id="result-count" class="result-count"></span>
+        </div>
+        <div class="section-actions">
+          <button id="refresh" title="Atualizar esta seleção">
+            ↻ Atualizar</button
+          ><button id="preferences">Ajustar meus gostos</button>
+        </div>
+      </div>
+      <section id="watch" hidden aria-label="Reprodução">
+        <div id="player-host"><div id="player"></div></div>
+        <div class="player-info">
+          <h3 id="playing-title"></h3>
+          <p id="playing-channel"></p>
+          <p id="player-error" role="status" hidden></p>
+          <div class="actions">
+            <button id="like">Curtir na conta</button
+            ><button id="next">Próximo vídeo</button
+            ><button id="retry-player">Tentar novamente</button
+            ><button id="open-video">Abrir no YouTube ↗</button
+            ><button id="close-player">Fechar player</button
+            ><label class="discord-presence"
+              ><input id="discord-presence" type="checkbox" checked /> Mostrar
+              no Discord</label
+            >
+          </div>
+        </div>
+      </section>
+      <p id="notice" role="status" aria-live="polite"></p>
+      <section
+        id="grid"
+        class="grid"
+        aria-label="Resultados"
+        aria-busy="false"
+      ></section>
+      <div id="sentinel">
+        <span id="loading-more" role="status" hidden
+          >Carregando mais vídeos…</span
+        ><button id="more" hidden>Carregar mais</button>
+      </div>
+      <footer>
+        Recomendações selecionadas pelo Mei Music ·
+        <a href="https://www.youtube.com/t/terms" target="_blank" rel="noopener"
+          >Termos do YouTube</a
+        >
+        ·
+        <a
+          href="https://policies.google.com/privacy"
+          target="_blank"
+          rel="noopener"
+          >Privacidade do Google</a
+        >
+      </footer>
+    </div>
+    <button
+      id="to-top"
+      aria-label="Voltar ao topo"
+      title="Voltar ao topo"
+      hidden
+    >
+      ↑
+    </button>
+    <div id="toast" role="status" aria-live="polite" hidden></div>
+    <dialog id="queue-dialog" aria-labelledby="queue-title">
+      <form method="dialog">
+        <button class="close" aria-label="Fechar fila">✕</button>
+      </form>
+      <h2 id="queue-title">Sua fila</h2>
+      <p>
+        Escolha o que vem a seguir. Sua fila tem prioridade sobre o automático
+        e continua disponível ao trocar de seção no Mei Music.
+      </p>
+      <ol id="queue-list"></ol>
+      <div class="queue-footer">
+        <button id="play-queue" class="primary">Reproduzir próximo</button
+        ><button id="clear-queue">Limpar fila</button>
+      </div>
+    </dialog>
+    <dialog id="settings-dialog">
+      <form method="dialog">
+        <button class="close" aria-label="Fechar">✕</button>
+      </form>
+      <h2>Conectar ao YouTube</h2>
+      <p>
+        Para buscar, informe uma chave da YouTube Data API. Para acessar sua
+        conta, importe também o JSON OAuth de um aplicativo para computador.
+      </p>
+      <form id="config-form">
+        <label
+          >Chave da YouTube Data API<input
+            id="api-key"
+            type="password"
+            autocomplete="off"
+            placeholder="Deixe vazio para manter a chave atual" /></label
+        ><label
+          >Credenciais OAuth do Google Cloud<input
+            id="oauth-file"
+            type="file"
+            accept="application/json,.json" /></label
+        ><button>Salvar configuração</button>
+      </form>
+      <hr />
+      <label class="checkbox"
+        ><input type="checkbox" id="write-access" /> Permitir curtir vídeos pela
+        minha conta (permissão adicional)</label
+      ><button id="connect">Entrar com Google</button
+      ><button id="disconnect">Desvincular e revogar acesso</button>
+      <p id="config-status" role="status"></p>
+      <small
+        >A senha é digitada somente na página oficial do Google. As credenciais
+        e os tokens são protegidos pelo Windows para este usuário. Vincular a
+        API não conecta automaticamente o navegador ao YouTube.</small
+      >
+    </dialog>
+    <dialog id="preferences-dialog">
+      <form method="dialog">
+        <button class="close" aria-label="Fechar">✕</button>
+      </form>
+      <h2>O que você gosta de ouvir?</h2>
+      <p>
+        Separe artistas, estilos ou canais por vírgula. Suas curtidas e as músicas
+        ouvidas aqui ajudam a escolher os resultados.
+      </p>
+      <form id="preferences-form">
+        <label
+          >Seus gostos<textarea
+            id="topics"
+            rows="4"
+            placeholder="Ex.: synthwave, rock brasileiro, trilhas de jogos"
+          ></textarea></label
+        ><button>Salvar meus gostos</button>
+      </form>
+      <p>
+        O histórico fica neste computador. O feed é uma seleção por
+        preferências, diferente do algoritmo da página inicial do YouTube.
+      </p>
+    </dialog>
+    <script type="module" src="/app.js"></script>
+  </body>
+</html>

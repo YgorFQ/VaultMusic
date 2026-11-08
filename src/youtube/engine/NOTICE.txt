@@ -1,0 +1,5 @@
+Derived from FreeTube v0.26.0-beta (AGPL-3.0-or-later), FreeTube Team and contributors.
+Upstream: https://github.com/FreeTubeApp/FreeTube/tree/v0.26.0-beta
+Changes: disabled application UI mount; exposed playback, related-video and radio helpers; adapted transport/host bridge, taste ranking and autoplay in adjacent source files.
+Original supplied app.asar SHA256: 9a2179317202ddf6e54884d3581c3c8d063d456ca3cfcb0e03b3aba407b9569e
+Source and build instructions are included with this local modification.

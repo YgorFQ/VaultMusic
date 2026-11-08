@@ -1,0 +1,10 @@
+{
+  "pluginVersion": "0.1.0-beta.1",
+  "platform": "win32-x64",
+  "meiVersion": "1.1.21 / 1.1.21.0",
+  "executableSha256": "ad26367ea49c07871a967136836f5651dac99e294a88408ecb2f037118bd2bb3",
+  "assets": {
+    "app": { "offset": 33188624, "compressedSize": 275583, "sha256": "3ce0a0ae69fa2f7e5ab9acfc083097093e3629f8a225120435307b87c1f79d46" },
+    "html": { "offset": 34391355, "compressedSize": 640, "sha256": "d75e157b7ef9faf61034e9080e0ee45e36256d739da3658b7d3f5e61ff5b9ad6" }
+  }
+}

@@ -1,0 +1,14 @@
+import fs from 'node:fs';import path from 'node:path';import crypto from 'node:crypto';import {format} from 'prettier';
+const args=process.argv.slice(2),dist=args[args.indexOf('--dist')+1];
+if(!args.includes('--dist')||!dist)throw Error('Uso: node scripts/prepare-engine.mjs --dist PASTA_DIST_DO_FREETUBE_026');
+const root=path.resolve(import.meta.dirname,'..'),target=path.join(root,'src/youtube/engine');
+const source=await format(fs.readFileSync(path.join(dist,'renderer.js'),'utf8'),{parser:'babel'});
+const start=source.indexOf('      const o9 = ((...e) => {'),end=source.lastIndexOf('    })());');
+if(start<0||end<start)throw Error('Formato do FreeTube diferente da versão 0.26.0 suportada.');
+const exports='globalThis.MeiFreeTube=Object.freeze({getVideoInfo:Cz,shaka:_J(),setupSabr:A0,manifestMime:yQ,getRelated:info=>(info.watch_next_feed||[]).filter(x=>["CompactVideo","CompactMovie","LockupView"].includes(x.type)&&(x.type!=="LockupView"||x.content_type==="VIDEO")).map(x=>Zz(x)),readNext:async(videoId,mix=false)=>{if(!/^[\\w-]{11}$/.test(videoId))throw Error("Vídeo inválido.");const session=await dz();return (await session.actions.execute("/next",{videoId,...(mix?{playlistId:"RD"+videoId}:{}),racyCheckOk:false,contentCheckOk:false})).data;}});\n';
+fs.writeFileSync(path.join(target,'freetube-engine.js'),source.slice(0,start)+exports+source.slice(end));
+const guard=fs.readFileSync(path.join(dist,'botGuardScript.js'),'utf8');if(!/export\{(\w+) as default\}/.test(guard))throw Error('Formato do auxiliar de token desconhecido.');
+fs.writeFileSync(path.join(target,'botguard.js'),guard.replace(/export\{(\w+) as default\}/,'globalThis.MeiGeneratePoToken=$1'));
+fs.copyFileSync(path.join(dist,'renderer.js.LICENSE.txt'),path.join(target,'renderer.js.LICENSE.txt'));
+const manifest=JSON.parse(fs.readFileSync(path.join(target,'build-manifest.json')));manifest.engineSha256=crypto.createHash('sha256').update(fs.readFileSync(path.join(target,'freetube-engine.js'))).digest('hex');manifest.generatedAt=new Date().toISOString();fs.writeFileSync(path.join(target,'build-manifest.json'),JSON.stringify(manifest,null,2));
+console.log('Motor preparado a partir do FreeTube 0.26.0.');

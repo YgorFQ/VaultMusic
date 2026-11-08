@@ -1,0 +1,15 @@
+{
+  "name": "vaultmusic",
+  "version": "0.1.0-beta.1",
+  "private": true,
+  "type": "module",
+  "description": "Melhoria local do Mei Music 1.1.21 com YouTube integrado",
+  "license": "AGPL-3.0-or-later",
+  "engines": { "node": ">=24" },
+  "scripts": {
+    "test": "node --test tests/*.test.mjs",
+    "package": "node scripts/package.mjs",
+    "audit:public": "node scripts/audit-public.mjs"
+  },
+  "dependencies": { "prettier": "3.6.2" }
+}

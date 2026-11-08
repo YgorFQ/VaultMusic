@@ -1,0 +1,50 @@
+/*
+ @license
+ Copyright 2024 Streaming Video Technology Alliance
+ SPDX-License-Identifier: Apache-2.0
+*/
+
+/*
+ @license
+ Shaka Player
+ Copyright 2016 Google LLC
+ SPDX-License-Identifier: Apache-2.0
+*/
+
+/*
+ @license
+ glMatrix: https://github.com/toji/gl-matrix/
+ Copyright 2015-2021, Brandon Jones, Colin MacKenzie IV
+ SPDX-License-Identifier: MIT
+*/
+
+/*
+ @license
+ tXml
+ Copyright 2015 Tobias Nickel
+ SPDX-License-Identifier: MIT
+*/
+
+/*!
+ * Font Awesome Free 7.3.1 by @fontawesome - https://fontawesome.com
+ * License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License)
+ * Copyright 2026 Fonticons, Inc.
+ */
+
+/*!
+* vue-router v5.4.0
+* (c) 2026 Eduardo San Martin Morote
+* @license MIT
+*/
+
+/**
+* @vue/runtime-dom v3.5.44
+* (c) 2018-present Yuxi (Evan) You and Vue contributors
+* @license MIT
+**/
+
+/**
+* @vue/shared v3.5.44
+* (c) 2018-present Yuxi (Evan) You and Vue contributors
+* @license MIT
+**/
